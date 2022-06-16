@@ -5,7 +5,6 @@ import os
 
 import utils
 from config import config
-from storage import ApplicationStorage
 
 from vkapi import VKLightOauth, VKLight, VKLightError, VKLightOauthError
 from handlers import APIHandler, LoadMusicHandler
@@ -130,8 +129,6 @@ class MainWindow(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
         self.auth_window = None
         self.tech_info_window = None
         self.completed = 0
-        
-        self.storage = ApplicationStorage()
 
         self.setupUi(self)
         self.setWindowIcon(QIcon(config.IconPath))
