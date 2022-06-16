@@ -5,6 +5,7 @@ import os
 
 import utils
 from config import config
+from storage import ApplicationStorage
 
 from vkapi import VKLightOauth, VKLight, VKLightError, VKLightOauthError
 from handlers import APIHandler, LoadMusicHandler
@@ -129,6 +130,9 @@ class MainWindow(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
         self.auth_window = None
         self.tech_info_window = None
         self.completed = 0
+        
+        self.storage = ApplicationStorage()
+
         self.setupUi(self)
         self.setWindowIcon(QIcon(config.IconPath))
         self.setWindowFlags(QtCore.Qt.Window)
@@ -163,7 +167,7 @@ class MainWindow(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
             self.user_id = data_token["user_id"]
 
             self.api = VKLight(dict(
-                    access_token=access_token,
+                    access_token=refresh_token,
                     proxy=self.action_5.isChecked()
                 )
             )
